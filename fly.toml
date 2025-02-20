@@ -1,30 +1,22 @@
-# fly.toml app configuration file generated for ollama-webui-demo on 2024-02-06T11:03:35+02:00
+# fly.toml app configuration file generated for fly-open-webui-shy-mountain-5772 on 2025-02-19T19:48:25-05:00
 #
 # See https://fly.io/docs/reference/configuration/ for information about how to use this file.
 #
 
-app = ''               # change this before deploying!
-primary_region = 'ord'
+app = 'fly-open-webui-shy-mountain-5772'
+primary_region = 'bos'
 
-[env]
-DEFAULT_MODEL = 'llama3.1:8b'
-OLLAMA_BASE_URL = 'http://localhost:11434'
-OLLAMA_MODELS = '/app/backend/data/models'
-
-[[mounts]]
-source = 'data'
-destination = '/app/backend/data'
-initial_size = '20gb'
+[build]
 
 [http_service]
-internal_port = 8080
-force_https = true
-auto_stop_machines = true
-auto_start_machines = true
-min_machines_running = 0
-processes = ['app']
+  internal_port = 8080
+  force_https = true
+  auto_stop_machines = 'stop'
+  auto_start_machines = true
+  min_machines_running = 0
+  processes = ['app']
 
 [[vm]]
-size = "performance-8x"
-memory = "16gb"
-gpu_kind = "l40s"
+  memory = '1gb'
+  cpu_kind = 'shared'
+  cpus = 1
